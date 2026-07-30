@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Management System</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+</head>
+<body>
+    <div class="grid-container">
+        <nav class="sidebar">
+            <h2>CoffeePanel ☕</h2>
+            <ul>
+                <li><a href="../index.html">Sign Out</a></li>
+                <li><a href="../dashboard/index.html">Dashboard</a></li>
+                <li><a href="../products_module/index.html">Products</a></li>
+                <li><a href="../billing_module/index.html">Billing</a></li>
+                <li><a href="../payment_module/index.html">Payment</a></li>
+            </ul>
+        </nav>
+        <div class="main-content">
+            <div class="top-bar">
+                <input type="text" id="search" placeholder="Search by name..." />
+                <button onclick="openAddModal()">Add Customer</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTableBody"></tbody>
+            </table>
+            <div class="modal" id="customerModal">
+                <div class="modal-content">
+                    <h3 id="modalTitle">Add Customer</h3>
+                    <form id="customerForm">
+                        <input type="hidden" id="editIndex" />
+                        <input type="text" id="name" placeholder="Full Name" required />
+                        <input type="email" id="email" placeholder="Email" required />
+                        <input type="text" id="phone" placeholder="Phone Number" required />
+                        <input type="text" id="address" placeholder="Address" required />
+                        <select id="status">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <div class="modal-actions">
+                            <button type="submit">Save</button>
+                            <button type="button" onclick="closeCustomerModal()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal" id="invoiceModal">
+                <div class="modal-content">
+                    <h3>Invoice Details</h3>
+                    <div id="invoiceDetails"></div>
+                    <div class="modal-actions">
+                        <button onclick="closeInvoiceModal()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

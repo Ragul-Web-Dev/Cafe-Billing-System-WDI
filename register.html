@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register - Billing System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="formContainer">
+        <div class="headings">
+            <h3>Create Account</h3>
+            <h4>Sign up to manage your billing system</h4>
+        </div>
+        <form id="registerForm" action="javascript:void(0);" method="POST">
+            <div class="input-container">
+                <input type="email" id="registerEmail" class="input-field" name="email" placeholder=" " required />
+                <label for="registerEmail">Email Id</label>
+            </div>
+            <div class="input-container" style="position: relative;">
+                <input type="password" id="registerPassword" class="input-field" name="password" placeholder=" " required />
+                <label for="registerPassword">Password</label>
+                <span id="toggleRegisterPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; user-select: none;">👁️</span>
+            </div>
+            <div class="input-container" style="position: relative;">
+                <input type="password" id="confirmPassword" class="input-field" name="confirmPassword" placeholder=" " required />
+                <label for="confirmPassword">Confirm Password</label>
+                <span id="toggleConfirmPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; user-select: none;">👁️</span>
+            </div>
+            <div class="password-requirements" id="passwordRequirements">
+                <p id="length" class="invalid">At least 8 characters</p>
+                <p id="uppercase" class="invalid">At least one uppercase letter</p>
+                <p id="lowercase" class="invalid">At least one lowercase letter</p>
+                <p id="number" class="invalid">At least one number</p>
+                <p id="special" class="invalid">At least one special character (!@#$%^&*)</p>
+            </div>
+            <div id="roleSelection">
+                <label for="roleSelect">Role</label>
+                <select id="roleSelect" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div>
+            <button type="submit" class="action-btn">Sign Up</button>
+        </form>
+        <div class="signup-link">
+            Already have an account? <a href="index.html">Log in here</a>
+        </div>
+    </div>
+    <script src="demo.js"></script>
+</body>
+</html>

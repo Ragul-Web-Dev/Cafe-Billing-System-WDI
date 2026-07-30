@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: #fff8f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        .invoice {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border: 10px solid #b86b2b;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 36px;
+            color: #914d1e;
+            margin: 0;
+        }
+
+        .invoice-number {
+            background: #b86b2b;
+            color: white;
+            padding: 5px 12px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .info, .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            color: #914d1e;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        .thanks {
+            text-align: right;
+            margin-top: 60px;
+            font-size: 18px;
+            color: #914d1e;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="header">
+            <div class="logo">
+                <h1>Brew Café</h1>
+                <p>
+                    123 Reston Park, Hyderabad, India<br />
+                    +91-98765-43210<br />
+                    www.brewcafe.in
+                </p>
+            </div>
+            <div>
+                <div class="invoice-number">INVOICE #<span id="invoiceNumber"></span></div>
+                <div id="date"></div>
+            </div>
+        </div>
+        <div class="info">
+            <strong>Billed To:</strong> <span id="customerName"></span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Tax</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceTable"></tbody>
+        </table>
+        <div class="total">TOTAL: ₹<span id="grandTotal"></span></div>
+        <div class="payment-method">
+            <strong>Payment Method</strong><br />
+            UPI: brewcafe@upi<br />
+            PhonePe: +91-98765-43210
+        </div>
+        <div class="thanks">Thank You!</div>
+    </div>
+    <script>
+        function formatINR(num) {
+            return Number(num).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const invoiceId = urlParams.get('invoice_id');
+        const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+        const data = invoices.find(inv => inv.id === invoiceId);
+
+        if (data) {
+            document.getElementById("customerName").textContent = data.customer;
+            document.getElementById("invoiceNumber").textContent = data.id;
+            document.getElementById("date").textContent = new Date(data.date).toDateString();
+
+            const tbody = document.getElementById("invoiceTable");
+            let grandTotal = 0;
+
+            data.items.forEach(item => {
+                const price = parseFloat(item.price);
+                const qty = parseInt(item.qty);
+                const taxPercent = parseFloat(item.tax);
+                const taxAmount = (price * qty * taxPercent) / 100;
+                const total = (price * qty) + taxAmount;
+                grandTotal += total;
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.product}</td>
+                    <td>${qty}</td>
+                    <td>₹${formatINR(price)}</td>
+                    <td>${taxPercent}%</td>
+                    <td>₹${formatINR(total)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            document.getElementById("grandTotal").textContent = formatINR(grandTotal);
+        } else {
+            document.body.innerHTML = "<h2 style='text-align:center;'>No invoice data found.</h2>";
+        }
+    </script>
+</body>
+</html>

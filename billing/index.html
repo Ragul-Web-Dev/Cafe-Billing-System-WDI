@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Café Billing System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="grid-container">
+        <nav class="sidebar">
+            <h2>CoffeePanel ☕</h2>
+            <ul>
+                <li><a href="../index.html">Sign Out</a></li>
+                <li><a href="../dashboard/index.html">Dashboard</a></li>
+                <li><a href="../products_module/index.html">Products</a></li>
+                <li><a href="../customer_module/index.html">Customers</a></li>
+                <li><a href="../payment_module/index.html">Payment</a></li>
+            </ul>
+        </nav>
+        <div class="billing-container">
+            <h1>Brew Café - Billing Module</h1>
+            <label for="customer">Select Customer:</label>
+            <select id="customer"></select>
+            <h3>Add Products</h3>
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Tax</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button onclick="addProductRow()">Add Product</button>
+            <hr>
+            <div id="summary">
+                <p><strong>Total:</strong> <span id="grandTotal">0.00</span></p>
+            </div>
+            <button onclick="generateInvoice()">Generate Invoice</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

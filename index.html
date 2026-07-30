@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Billing System</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="formContainer">
+        <div class="headings">
+            <h3>Welcome Back!</h3>
+            <h4>Sign in to access your billing account</h4>
+        </div>
+        <form id="loginForm" action="javascript:void(0);" method="POST">
+            <div class="input-container">
+                <input type="email" id="loginEmail" class="input-field" name="email" placeholder=" " required />
+                <label for="loginEmail">Email Id</label>
+            </div>
+            <div class="input-container" style="position: relative;">
+                <input type="password" id="loginPassword" class="input-field" name="password" placeholder=" " required />
+                <label for="loginPassword">Password</label>
+                <span id="toggleLoginPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 18px; user-select: none;">👁️</span>
+            </div>
+            <a href="forgotPassword.html" class="forgot-password">Forgot Password?</a>
+            <button type="submit" class="action-btn">Log in</button>
+            <div class="divider">or</div>
+            <div id="googleSignInButton"></div>
+        </form>
+        <div class="signup-link">
+            Don't have an account? <a href="register.html">Sign up here</a>
+        </div>
+    </div>
+    <script src="demo.js"></script>
+</body>
+</html>

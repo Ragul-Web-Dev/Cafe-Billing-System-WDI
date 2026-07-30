@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Module</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="grid-container">
+        <nav class="sidebar">
+            <h2>CoffeePanel ☕</h2>
+            <ul>
+                <li><a href="../index.html">Sign Out</a></li>
+                <li><a href="../dashboard/index.html">Dashboard</a></li>
+                <li><a href="../products_module/index.html">Products</a></li>
+                <li><a href="../customer_module/index.html">Customers</a></li>
+                <li><a href="../billing_module/index.html">Billing</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <h2>Process Payment</h2>
+            <label for="invoice">Select Invoice</label>
+            <select id="invoice">
+                <option disabled selected>Select invoice</option>
+            </select>
+            <div id="itemsList"></div>
+            <label for="amount">Amount (in ₹)</label>
+            <input type="text" id="amount" readonly>
+            <div class="radio-group">
+                <label>Select Payment Mode:</label>
+                <label><input type="radio" name="paymentMode" value="Cash">Cash</label>
+                <label><input type="radio" name="paymentMode" value="Card">Card</label>
+                <label><input type="radio" name="paymentMode" value="UPI">UPI</label>
+            </div>
+            <div class="qr-code" id="qrCodeContainer"></div>
+            <button class="btn" onclick="submitPayment()">Mark as Paid</button>
+            <div class="receipt" id="receipt"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
